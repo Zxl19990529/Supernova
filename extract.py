@@ -6,8 +6,8 @@ import os
 import shutil
 
 parse = argparse.ArgumentParser()
-parse.add_argument('--folder',type=str,help='the folder of the train/test')
-parse.add_argument('--mode',type=str,default='test',help='test or train')
+parse.add_argument('--folder',default='/home/zhb/Downloads/supernova/af2019-cv-training-20190312',type=str,help='the folder of the train/test')
+parse.add_argument('--mode',type=str,default='train',help='test or train')
 args = parse.parse_args()
 path = args.folder
 
@@ -31,7 +31,7 @@ for root,dirs,files in os.walk(path):
         if(files[i][-3:] == 'jpg'):
             file_path = root + '/' + files[i]
             new_file_path = extract_path + '/' + files[i]
-            shutil.move(file_path,new_file_path)
+            shutil.copy(file_path,new_file_path)
 
 for root,dirs,files in os.walk(extract_path):
     for i in range(len(files)):

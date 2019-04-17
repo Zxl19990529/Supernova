@@ -87,10 +87,25 @@
 `python merge.py --output_dir ./clear_merged --mode <test/train>`  
 
 进入supernova路径`cd supernova`    
-
 1. 把降噪后的图片整理好。`cp ../clear_merged_train/* ./data/VOCdevkit/VOC2007/JPEGImages/`
-1. 生成xml文件 `python vocxml_make.py`  
-2. 生成train.txt 文件`python make_train_val_test_set.py`  
+2. 生成xml文件 `python vocxml_make.py`  
+
+* 数据增强
+* 选出五类疑似星体，保存出image和xml
+`python findcopyfile_selected.py --srcimage_dir_path ./data/VOCdevkit/VOC2007/JPEGImages/ --srcxml_dir_path ./data/VOCdevkit/VOC2007/Annotations/ --imageto_dir_path ./data/VOCdevkit/VOC2007/TMP_JPEG --xmlto_dir_path ./data/VOCdevkit/VOC2007/TMP_Ann --txt_path list.csv`  
+* 进行数据增强
+`python do_image.py --imgs_path ./data/VOCdevkit/VOC2007/TMP_JPEG/ --save_path ./data/VOCdevkit/VOC2007/TMP_JPEG_1`  
+* 训练集增加数据增强
+`python change_xml.py`  
+* 对增强后的图像和标注文件进行整理
+`cp data/VOCdevkit/VOC2007/Annotations_2/* data/VOCdevkit/VOC
+2007/Annotations/`  
+`cp data/VOCdevkit/VOC2007/TMP_JPEG_1/* data/VOCdevkit/VOC200
+7/JPEGImages`  
+生成的xml文件最后保存在/data/VOCdevkit/VOC2007/Annotations目录(zym左右镜像/sxm上下镜像)，生成的JPEG文件最后保存在/data/VOCdevkit/VOC2007/JPEGImages目录
+
+
+3. 生成train.txt 文件`python make_train_val_test_set.py`  
 
 ### 模型
 
@@ -104,7 +119,7 @@
 
 ### 训练操作步骤
 
-支持多块GPU的训练,1 对应的是显卡数目，CUDA_VISIBLE_DEVICES= 对应显卡编号。  
+支持多块GPU的训练,`--validate`前面的 1 对应的是显卡数目，CUDA_VISIBLE_DEVICES= 对应显卡编号。  
 ```shell
 CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh ./cascade_rcnn_x101_32x4d_fpn_1x_2class.py 1 --validate 
 ```

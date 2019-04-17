@@ -101,11 +101,34 @@ def save_xml(image_name, bbox_class, save_dir=save_todir, width=1609, height=500
         node_ymax.text = '%s' % bottom
 
   else:
-        print("There is an error: ",node_filename.text)
-        file_object = open('log.txt', 'a+')
-        file_object.writelines("There is an error: "+ node_filename.text + '\t')
-        file_object.writelines(str(left)+' '+str(top)+' '+str(right)+' '+ str(bottom)+'\n')
-        file_object.close()
+        # print("There is an error: ",node_filename.text)
+        # file_object = open('log.txt', 'a+')
+        # file_object.writelines("There is an error: "+ node_filename.text + '\t')
+        # file_object.writelines(str(left)+' '+str(top)+' '+str(right)+' '+ str(bottom)+'\n') 
+        # file_object.close()
+        if left <1 :
+            left =0
+        if right >=width:
+            right = width
+        if bottom < 1:
+            bottom = 0
+        if top >= height:
+            top = height
+        print("lefttop and rightbottom are in the range!", countnum)
+        node_object = SubElement(node_root, 'object')
+        node_name = SubElement(node_object, 'name')
+        node_name.text = '%s' % bbox_class[2]
+        node_difficult = SubElement(node_object, 'difficult')
+        node_difficult.text = '0'
+        node_bndbox = SubElement(node_object, 'bndbox')
+        node_xmin = SubElement(node_bndbox, 'xmin')
+        node_xmin.text = '%s' % left
+        node_ymin = SubElement(node_bndbox, 'ymin')
+        node_ymin.text = '%s' % top
+        node_xmax = SubElement(node_bndbox, 'xmax')
+        node_xmax.text = '%s' % right
+        node_ymax = SubElement(node_bndbox, 'ymax')
+        node_ymax.text = '%s' % bottom
 
 
   xml = tostring(node_root, pretty_print=True)

@@ -86,7 +86,17 @@
 
 `python merge.py --output_dir ./clear_merged --mode <test/train>`  
 
-进入supernova路径`cd supernova`    
+进入supernova路径`cd supernova`
+在当前路径下创建一个文件夹`./data`,然后在 `data` 路径下建立好VOC数据集格式，文件夹结构如下：
+```
+VOCdevkit2007
+        - VOC2007
+            - Annotations 
+            - ImageSets 
+                - Main
+            - JPEGImages
+```
+回到`supernova`路径。
 1. 把降噪后的图片整理好。`cp ../clear_merged_train/* ./data/VOCdevkit/VOC2007/JPEGImages/`
 2. 生成xml文件 `python vocxml_make.py`  
 

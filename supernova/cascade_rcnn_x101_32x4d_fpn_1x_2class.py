@@ -208,7 +208,7 @@ log_config = dict(
 total_epochs = 200
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './supernova_cascade'
+work_dir = './checkpoints'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]

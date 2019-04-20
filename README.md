@@ -67,7 +67,7 @@
 `python clean.py --original_folder extract_b --save_folder clear_b --mode <test/train>`  
 `python clean.py --original_folder extract_c --save_folder clear_c --mode <test/train>`  
 以上程序运行完毕后，再运行以下脚本产生没有扩展名的文件列表。  
-`pythom make_list.py --mode <test/train>`  
+`python make_list.py --mode <test/train>`  
 产生降噪后的彩图。  
 `python merge.py --output_dir ./clear_merged --mode <test/train>`
 
@@ -81,7 +81,7 @@
 `python clean.py --original_folder extract_b --save_folder clear_b --mode <test/train>`  
 `python clean.py --original_folder extract_c --save_folder clear_c --mode <test/train>`  
 以上程序运行完毕后，再运行以下脚本产生没有扩展名的文件列表。  
-`pythom make_list.py --mode <test/train>`  
+`python make_list.py --mode <test/train>`  
 产生降噪后的彩图。  
 
 `python merge.py --output_dir ./clear_merged --mode <test/train>`  

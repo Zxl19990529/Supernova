@@ -36,7 +36,7 @@
 * anaconda3
 * cython
 
-首先搭建环境: `conda env create -f supernova.yml`  
+首先搭建环境: `conda env create -f supernova.yml`  （可能到最后会报个错，不用理会）
 激活环境: `conda activate supernova`  
 `pip install cython`  
 `pip install torch torchvision`

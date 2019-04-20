@@ -108,8 +108,7 @@ VOCdevkit2007
 * 训练集增加数据增强
 `python change_xml.py`  
 * 对增强后的图像和标注文件进行整理
-`cp data/VOCdevkit/VOC2007/Annotations_2/* data/VOCdevkit/VOC
-2007/Annotations/`  
+`cp data/VOCdevkit/VOC2007/Annotations_2/* data/VOCdevkit/VOC2007/Annotations/`  
 `cp data/VOCdevkit/VOC2007/TMP_JPEG_1/* data/VOCdevkit/VOC200
 7/JPEGImages`  
 生成的xml文件最后保存在/data/VOCdevkit/VOC2007/Annotations目录(zym左右镜像/sxm上下镜像)，生成的JPEG文件最后保存在/data/VOCdevkit/VOC2007/JPEGImages目录
